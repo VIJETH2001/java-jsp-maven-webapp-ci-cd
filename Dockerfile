@@ -12,6 +12,6 @@ WORKDIR /app
 COPY target/MyLab-0.0.1.war ${WAR_FILE}
 
 # Expose the port that Tomcat will run on
-EXPOSE 8000
+EXPOSE 8100
 
 
