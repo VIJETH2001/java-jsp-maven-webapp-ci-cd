@@ -1,0 +1,62 @@
+java jsp maven webapp tomcat
+
+Dashboard->manage jenkins-> credentials->store scoped-> global->
+add credentials ->username-tomcat 
+password-tomcat@123
+ID- Tomcat
+description- Tomcat
+
+Dashboard-> manage jenkins -> tools ->Maven installations -> add maven
+Name- mymaven
+add
+
+install plugin - Deploy to container
+
+new item-> java_step1
+source code management
+git
+repository URL - https://github.com/VIJETH2001/java-jsp-maven-webapp-ci-cd.git
+
+*/main
+
+Build Steps
+-> Invoke top-level Maven targets
+Maven Version->mymaven 
+Goals- package
+
+Post Build Actions
+->Deploy war/ear to a container
+
+WAR/EAR files- **/*.war
+Context path- javaapp
+
+Containers-> add container-> Tomcat 9.x Remote
+
+Credentials - give your tomcat credentials
+Tomcat URL- http://localhost:8100
+
+save and build
+go to localhost:8100 
+click on manager webapp and click on java
+
+new item-> java_step2
+copy from java_step1
+
+Build Steps
+->Invoke top-level Maven targets
+maven version- mymaven
+Goals-package
+
+Add build step
+->Docker Build and publish
+repository Name- vijeth2001/javaapp
+Tag-v1
+registry credentials- add docker credentials
+
+Add build step
+-> Execute shell
+docker run -it -d -p 8300:8100 vijeth2001/javaapp
+
+save and build
+
+localhost:8300

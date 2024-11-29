@@ -1,0 +1,13 @@
+kubernetes step
+//add hpi file in advanced plugins
+//you will be provided with one ip 
+sudo ssh chef@172.16.51.40
+sudo cat ~/.kube/config
+kubectl get svc
+kubectl get pods
+//copy the content of the file
+//go to jenkins
+->manage jenkins -> credentials ->stores scoped to jenkins -> global
+-> add credentials -> new credentials 
+kind -> kubernetes configuration
+->kubeconfig-> Enter directly(paste the copied file)

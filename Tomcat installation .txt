@@ -1,0 +1,17 @@
+//Tomcat installation
+sudo apt-get install tomcat10
+sudo apt-get install tomcat10-admin
+cd /etc/tomcat10
+ls
+sudo nano server.xml
+//(change port to 8100) below port add (address="127.0.0.0" or your system IP)
+//save and exit
+sudo nano tomcat-users.xml
+//add(<user username="tomcat" password="tomcat@123" roles="manager-gui,manager-script"/>
+//add this before </tomcat-users>
+sudo systemctl restart tomcat10.service
+sudo ufw allow 8100/tcp
+//(if dosent connect then change address= 0.0.0.0)
+sudo systemctl restart tomcat10.service
+//go to browser and type localhost:8100
+//click on manager webapp and login with credentials)

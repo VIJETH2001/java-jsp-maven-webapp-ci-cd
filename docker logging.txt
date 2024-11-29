@@ -1,0 +1,13 @@
+docker logging in
+Dashboard-> manage jenkins-> credentials ->stored scoped to Jenkins
+->(global) add your docker username and pass ->ID -Docker ->Description -Docker
+go to terminal
+sudo su jenkins
+-> docker login
+(enter docker login credentials) 
+
+on terminal 
+sudo docker login (Add credentials)
+sudo goupadd docker
+sudo usermod -aG docker jenkins
+
