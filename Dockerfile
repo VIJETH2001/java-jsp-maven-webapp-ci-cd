@@ -1,17 +1,16 @@
-# Use the official Tomcat base image
-FROM tomcat:9.0-jdk11-openjdk-slim
+# Use an official Tomcat image as the base image
+FROM tomcat:9-jdk11-openjdk
 
-# Set environment variables
-ENV APP_HOME /usr/local/tomcat/webapps/MyLab
-ENV WAR_FILE /usr/local/tomcat/webapps/MyLab.war
+# Remove the default web apps that come with Tomcat (optional, to avoid clutter)
+RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Set the working directory to /app
-WORKDIR /app
+# Copy your WAR file to Tomcat's webapps directory
+COPY target/java-tomcat-maven-example.war /usr/local/tomcat/webapps/ROOT.war
 
-# Copy the WAR file into the container
-COPY target/MyLab-0.0.1.war ${WAR_FILE}
+# Change the port Tomcat listens on (from default 8080 to 8000)
+RUN sed -i 's/8080/8000/g' /usr/local/tomcat/conf/server.xml
 
-# Expose the port that Tomcat will run on
+# Expose the Tomcat HTTP port on 8000
 EXPOSE 8100
 
 
