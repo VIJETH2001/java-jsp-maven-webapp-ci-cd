@@ -11,6 +11,6 @@ COPY target/*.war /usr/local/tomcat/webapps/
 RUN sed -i 's/8080/8000/g' /usr/local/tomcat/conf/server.xml
 
 # Expose the Tomcat HTTP port on 8000
-EXPOSE 8100
+EXPOSE 8000
 
 
