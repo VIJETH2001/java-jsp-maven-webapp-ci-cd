@@ -5,7 +5,7 @@ FROM tomcat:9-jdk11-openjdk
 RUN rm -rf /usr/local/tomcat/webapps/*
 
 # Copy your WAR file to Tomcat's webapps directory
-COPY target/*.war /usr/local/tomcat/webapps/ROOT.war
+COPY target/*.war /usr/local/tomcat/webapps/
 
 # Change the port Tomcat listens on (from default 8080 to 8000)
 RUN sed -i 's/8080/8000/g' /usr/local/tomcat/conf/server.xml
